@@ -2,11 +2,98 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget.App.Views.Expenses.ExpenseDetailPage"
-             Title="ExpenseDetailPage">
-    <VerticalStackLayout>
+             xmlns:vm="clr-namespace:Budget.App.ViewModels.Expenses"
+             xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="vm:ExpenseDetailPageViewModel"
+             Title="Despesa">
+
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="Loaded" Command="{Binding LoadedPageCommand}"/>
+    </ContentPage.Behaviors>
+
+    <Grid
+    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+    RowSpacing="10"
+    ColumnDefinitions="*,*"
+    ColumnSpacing="10"
+    Margin="15">
+
+        <!--LINHA 0-->
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        Grid.ColumnSpan="2"
+        HorizontalTextAlignment="Center"
+        Text="Dados da Despesa"/>
+
+        <!--LINHA 1-->
+        <Entry 
+        Grid.Row="1"
+        Grid.ColumnSpan="2"
+        TextTransform="Uppercase"
+        Placeholder="Descrição"
+        Text="{Binding Expense.Description}"/>
+
+        <!--LINHA 2-->
+        <Label 
+        Grid.Row="2"
+        VerticalOptions="Center"
+        Text="Valor da despesa:"/>
+
+        <Entry 
+        Grid.Row="2"
+        Grid.Column="1"
+        Placeholder="Valor da despesa"
+        Keyboard="Numeric"
+        Text="{Binding Expense.Amount}"/>
+
+        <!--LINHA 3-->
+        <Label 
+        Grid.Row="3"
+        VerticalOptions="Center"
+        Text="Data de vencimento:"/>
+
+        <DatePicker 
+        Grid.Row="3"
+        Grid.Column="1"
+        Format="dd/MM/yyyy"
+        Date="{Binding Expense.Date}"/>
+
+        <!--LINHA 4-->
+        
+        <!--LINHA 5-->
+
+        <!--LINHA 6-->
+        
+        <!--LINHA 7-->
+        <Picker 
+        Grid.Row="7"
+        Grid.ColumnSpan="2"
+        Title="Categoria:"
+        ItemsSource="{Binding Categories}" 
+        ItemDisplayBinding="{Binding Name}" 
+        SelectedItem="{Binding Expense.Category}" />
+
+        <!--LINHA 8-->
+
+        <!--LINHA 9-->
+        <Label 
+        Grid.Row="9"
+        VerticalOptions="Center"
+        Text="Depesa finalizada:"/>
+
+        <CheckBox 
+        Grid.Row="9"
+        Grid.Column="1"
+        IsChecked="{Binding Expense.IsPaid}"/>
+
+
+        <!--LINHA 10-->
+        <Button
+        Grid.Row="10"
+        Grid.ColumnSpan="2"
+        VerticalOptions="End"
+        Command="{Binding SaveChangesCommand}"
+        Text="Salvar"/>
+
+    </Grid>
+
 </ContentPage>

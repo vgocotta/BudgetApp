@@ -2,11 +2,72 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Budget.App.Views.Expenses.ExpensesPage"
-             Title="ExpensesPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:Budget.App.ViewModels.Expenses"
+             xmlns:m="clr-namespace:Budget.Core.Entities;assembly=Budget.Core"
+             xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="vm:ExpensesPageViewModel"
+             Title="Despesas">
+
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="Loaded" Command="{Binding LoadedPageCommand}"/>
+    </ContentPage.Behaviors>
+
+    <CollectionView
+    Margin="10"
+    SelectionMode="Single"
+    SelectionChangedCommand="{Binding SelectionChangedCommand}"
+    SelectedItem="{Binding SelectedExpense}"
+    ItemsSource="{Binding Expenses}">
+
+        <CollectionView.Header>
+
+            <Button
+            Margin="0,0,0,10"
+            Text="+ Cadastrar Nova Despesa"
+            Command="{Binding AddNewCommand}"/>
+
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate 
+            x:DataType="m:Expense">
+
+                <Grid
+                RowDefinitions="*,*,*"
+                RowSpacing="0"
+                ColumnDefinitions="*,*"
+                Padding="0,10">
+
+                    <Label 
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Description}"/>
+
+                    <Label 
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Category.Name, StringFormat='Despesa com {0}'}"/>
+
+                    <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Amount, StringFormat='no valor de {0:C2}'}"/>
+
+                    <Label 
+                    Grid.Row="1"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding Date, StringFormat='Vencimento em {0:d}'}"/>
+
+                    <Label 
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Start"
+                    IsVisible="{Binding IsPaid}"
+                    Text="Despesa Paga"/>
+
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
 </ContentPage>
