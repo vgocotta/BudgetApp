@@ -1,8 +1,8 @@
 ﻿using Budget.Core.Entities;
-using Budget.Infrastructure.Data;
+using Budget.Core.Interfaces;
+using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.EntityFrameworkCore;
 
 namespace Budget.App.ViewModels.Categories;
 
@@ -17,23 +17,22 @@ public partial class CategoriesPageViewModel : ObservableObject
     [ObservableProperty]
     private string newCategoryName = null!;
 
-    private readonly AppDbContext _context;
-
-    public CategoriesPageViewModel(AppDbContext dbContext)
+    private readonly ICategoryRepository _categoryRepository;
+    public CategoriesPageViewModel(ICategoryRepository categoryRepository)
     {
-        _context = dbContext;
+        _categoryRepository = categoryRepository;
     }
 
 
     [RelayCommand]
     private async Task LoadedPage()
     {
-        await _context.Categories.LoadAsync();
-        Categories = _context.Categories.Local.ToObservableCollection();
+        var categories = await _categoryRepository.GetAllAsync();
+        Categories = categories.ToObservableCollection();
     }
 
     [RelayCommand]
-    private void AddNew()
+    private async Task AddNew()
     {
         if (string.IsNullOrWhiteSpace(NewCategoryName))
         {
@@ -45,22 +44,29 @@ public partial class CategoriesPageViewModel : ObservableObject
             Name = NewCategoryName
         };
 
+        await _categoryRepository.AddAsync(newCategory);
+
         Categories.Add(newCategory);
     }
 
     [RelayCommand]
     private async Task SaveChanges()
     {
-        await _context.SaveChangesAsync();
+        if (Category == null)
+        {
+            return;
+        }
+        await _categoryRepository.UpdateAsync(Category);
     }
 
     [RelayCommand]
-    private void Delete()
+    private async Task Delete()
     {
         if (Category == null)
         {
             return;
         }
+        await _categoryRepository.DeleteAsync(Category.Id);
         Categories.Remove(Category);
     }
 }
