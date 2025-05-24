@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="Budget.AppShell"
-xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-xmlns:home="clr-namespace:Budget.Views.Home"
-xmlns:expenses="clr-namespace:Budget.Views.Expenses"
-xmlns:categories="clr-namespace:Budget.Views.Categories"
-Shell.FlyoutBehavior="Disabled"
-Title="Orçamento">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:home="clr-namespace:Budget.App.Views.Home"
+    xmlns:expenses="clr-namespace:Budget.App.Views.Expenses"
+    xmlns:categories="clr-namespace:Budget.App.Views.Categories"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Orçamento">
 
     <TabBar>
 
