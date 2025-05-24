@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Budget.Core.Interfaces;
+using Budget.Infrastructure.Data;
+using Budget.Infrastructure.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace Budget.App
 {
@@ -15,8 +18,14 @@ namespace Budget.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            
+            builder.Services.AddDbContext<AppDbContext>();
+
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

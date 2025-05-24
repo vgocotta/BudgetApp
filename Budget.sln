@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Infrastructure", "Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Tests", "Budget.Tests\Budget.Tests.csproj", "{20D03579-C8E5-40D4-B584-883375CFE2B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{FC2DCBEA-F8DA-44CB-9697-197CBC5C3CB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Migrator", "Budget.Migrator\Budget.Migrator.csproj", "{9660B885-CA59-4321-AA0C-9C6706DC2B39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{20D03579-C8E5-40D4-B584-883375CFE2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20D03579-C8E5-40D4-B584-883375CFE2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20D03579-C8E5-40D4-B584-883375CFE2B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9660B885-CA59-4321-AA0C-9C6706DC2B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9660B885-CA59-4321-AA0C-9C6706DC2B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9660B885-CA59-4321-AA0C-9C6706DC2B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9660B885-CA59-4321-AA0C-9C6706DC2B39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +56,6 @@ Global
 		{7E6096C8-7973-4AB3-BD71-AA8D7094262F} = {B7B28AAB-7946-4924-A3A8-5302FF9C186B}
 		{5461F691-29EC-4AC6-A8FA-21D22472E702} = {B7B28AAB-7946-4924-A3A8-5302FF9C186B}
 		{20D03579-C8E5-40D4-B584-883375CFE2B6} = {224EB3A6-D562-4F44-9EE6-BAB068F2A940}
+		{9660B885-CA59-4321-AA0C-9C6706DC2B39} = {FC2DCBEA-F8DA-44CB-9697-197CBC5C3CB3}
 	EndGlobalSection
 EndGlobal

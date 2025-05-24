@@ -5,8 +5,10 @@ namespace Budget.Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options) { }
+    public AppDbContext()
+    {
+        Database.Migrate();
+    }
 
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Expense> Expenses => Set<Expense>();
@@ -15,8 +17,13 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Category>().ToTable("Categories");
-        modelBuilder.Entity<Expense>().ToTable("Expenses");
+        modelBuilder
+            .Entity<Category>()
+            .ToTable("Categories");
+        
+        modelBuilder
+            .Entity<Expense>()
+            .ToTable("Expenses");
 
         modelBuilder.Entity<Category>()
             .HasMany(c => c.Expenses)
