@@ -1,13 +1,23 @@
-﻿namespace Budget.Core.Entities;
+﻿using Budget.Core.Tools;
 
-public class Expense
+namespace Budget.Core.Entities;
+
+public class Expense : NotifyPropertyChanged
 {
-    public int Id { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public decimal Amount { get; set; }
-    public DateTime Date { get; set; }
-    public bool IsPaid { get; set; }
+    private int id;
+    private string description = string.Empty;
+    private decimal amount;
+    private DateTime date;
+    private bool isPaid;
+    private int categoryId;
+    private Category? category;
 
-    public int CategoryId { get; set; }
-    public Category? Category { get; set; }
+    public int Id { get => id; set => SetField(ref  id, value); }
+    public string Description { get => description; set => SetField(ref  description, value); }
+    public decimal Amount { get => amount; set => SetField(ref  amount, value); }
+    public DateTime Date { get => date; set => SetField(ref  date, value); }
+    public bool IsPaid { get => isPaid; set => SetField(ref  isPaid, value); }
+
+    public int CategoryId { get => categoryId; set => SetField(ref  categoryId, value); }
+    public Category? Category { get => category; set => SetField(ref  category, value); }
 }
