@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Budget.App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:home="clr-namespace:Budget.App.Views.Home"
+    xmlns:expenses="clr-namespace:Budget.App.Views.Expenses"
+    xmlns:categories="clr-namespace:Budget.App.Views.Categories"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Orçamento">
+
+    <TabBar>
+
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate home:HomePage}"
+        Route="Home" />
+
+        <ShellContent
+        Title="Despesas"
+        ContentTemplate="{DataTemplate expenses:ExpensesPage}"
+        Route="Expenses" />
+
+        <ShellContent
+        Title="Categorias"
+        ContentTemplate="{DataTemplate categories:CategoriesPage}"
+        Route="Categories" />
+
+    </TabBar>
+
+</Shell>
